@@ -1,7 +1,7 @@
 ######
 #tundeakingbade11@gmail.com
 ######
-#Supports MobaXterm 20.5 but the script can be modified to support any terminal program that can export its nodes as an editable file.
+#Supports Moba-Xterm 20.5 but the script can be modified to support any terminal program that can export its nodes as an editable file.
 ######
 ######
 import pandas as pd
@@ -44,6 +44,7 @@ new_file.write('ImgNum=41\n')
 for d in range(0, df_HW.shape[0]):
     node = df_HW['NE Name'][d]
     IP = df_HW['NE IP Address'][d]
+    
     new_file.write(f'{node}= #129#1%{IP}%23%%%2%%%%%0%0%%1080%#MobaFont%10%0%0%-1%15%236,236,236%30,30,30%180,180,192%0%-1%0%%xterm%-1%-1%_Std_Colors_0_%80%24%0%1%-1%<none>%%0#0# #-1\n')
 
 # MPBN IP List
@@ -63,11 +64,11 @@ new_file.write('ImgNum=41\n')
 for d in range(0, df_NK.shape[0]):
     node = df_NK['Site Name'][d]
     IP = df_NK['Site ID'][d]
-    if "SASK" in node:
-        new_file.write(f'{node}= #130#0%{IP}%22%%%0%-1%%%%%0%-1%0%%%-1%0%0%0%%1080%%0%0%1#MobaFont%10%0%0%-1%15%236,236,236%30,30,30%180,180,192%0%-1%0%%xterm%-1%-1%_Std_Colors_0_%80%24%0%1%-1%<none>%%0#0# #-1\n')
-    elif "SARAX" in node:
-        new_file.write(f'{node}= #130#0%{IP}%22%%%0%-1%%%%%0%-1%0%%%-1%0%0%0%%1080%%0%0%1#MobaFont%10%0%0%-1%15%236,236,236%30,30,30%180,180,192%0%-1%0%%xterm%-1%-1%_Std_Colors_0_%80%24%0%1%-1%<none>%%0#0# #-1\n')
-    else:
+    if "SASK" in node: #SSH is the prefered method of login
+        new_file.write(f'{node} =  #130#0%{IP}%22%%%0%-1%%%%%0%-1%0%%%0%0%0%0%%1080%%0%0%0#MobaFont%10%0%0%-1%15%236,236,236%30,30,30%180,180,192%0%-1%0%%xterm%-1%-1%_Std_Colors_0_%80%24%0%1%-1%<none>%%0#0# #-1\n')
+    elif "SARAX" in node: #SSH is the prefered method of login
+        new_file.write(f'{node} =  #130#0%{IP}%22%%%0%-1%%%%%0%-1%0%%%0%0%0%0%%1080%%0%0%0#MobaFont%10%0%0%-1%15%236,236,236%30,30,30%180,180,192%0%-1%0%%xterm%-1%-1%_Std_Colors_0_%80%24%0%1%-1%<none>%%0#0# #-1\n')
+    else: #Other Nodes have Telnet as the prefered method due to some software issues for now
         new_file.write(f'{node}=#129#1%{IP}%23%%%2%%%%%0%0%%1080%#MobaFont%10%0%0%-1%15%236,236,236%30,30,30%180,180,192%0%-1%0%%xterm%-1%-1%_Std_Colors_0_%80%24%0%1%-1%<none>%%0#0# #-1\n')
 
 new_file.close()
